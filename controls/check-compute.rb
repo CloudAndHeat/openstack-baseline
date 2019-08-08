@@ -1,8 +1,6 @@
 # encoding: utf-8
 # All checks from http://docs.openstack.org/security-guide/compute/checklist.html
 
-nova_conf_dir = '/etc/nova'
-
 nova_conf_dir = attribute(
   'nova_config_dir',
   default: '/etc/nova',
