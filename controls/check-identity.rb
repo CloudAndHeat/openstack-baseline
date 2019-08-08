@@ -8,7 +8,7 @@ keystone_conf_dir = attribute(
 )
 
 keystone_conf_file = attribute(
-  'keystone_config_file',
+  'keystone_conf_file',
   default: "#{keystone_conf_dir}/keystone.conf",
   description: 'OpenStack Keystone config file'
 )
@@ -167,5 +167,14 @@ control 'check-identity-07' do
 
   describe ini(keystone_conf_file) do
     its(['DEFAULT', 'insecure_debug']) { should be_nil.or eq 'False' }
+  end
+end
+
+control 'check-identity-08' do
+  title 'Use fernet token in keystone config file'
+  ref 'https://docs.openstack.org//security-guide/identity/checklist.html#check-identity-08-use-fernet-token-in-etc-keystone-keystone-conf'
+
+  describe ini(keystone_conf_file) do
+    its(['token', 'provider']) { should eq 'fernet' }
   end
 end
