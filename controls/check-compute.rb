@@ -50,6 +50,9 @@ control 'check-compute-02' do
   describe file("#{nova_conf_dir}/rootwrap.conf") do
     its('mode') { should cmp '0640' }
   end
+  describe directory("#{nova_conf_dir}") do
+    its('mode') { should cmp '0750' }
+  end
 end
 
 control 'check-compute-03' do
