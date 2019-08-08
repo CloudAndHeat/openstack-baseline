@@ -25,9 +25,6 @@ control 'check-block-01' do
     it { should be_owned_by 'root' }
     its('group') { should eq 'cinder' }
   end
-  describe directory ("#{cinder_conf_dir}") do
-    its('mode') { should cmp '0750'}
-  end
 end
 
 control 'check-block-02' do
@@ -46,7 +43,9 @@ control 'check-block-02' do
   describe file("#{cinder_conf_dir}/rootwrap.conf") do
     its('mode') { should cmp '0640' }
   end
-  describe file()
+  describe directory ("#{cinder_conf_dir}") do
+    its('mode') { should cmp '0750'}
+  end
 end
 
 control 'check-block-03' do
