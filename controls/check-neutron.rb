@@ -1,7 +1,12 @@
 # encoding: utf-8
 # All checks from http://docs.openstack.org/security-guide/networking/checklist.html
 
-neutron_conf_dir = '/etc/neutron'
+neutron_conf_dir = attribute(
+  'neutron_conf_dir',
+  default: '/etc/neutron',
+  description: 'OpenStack Networking Service config file path'
+)
+
 neutron_conf_file = "#{neutron_conf_dir}/neutron.conf"
 
 control 'check-neutron-01' do
