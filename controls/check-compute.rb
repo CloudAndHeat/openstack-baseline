@@ -2,6 +2,13 @@
 # All checks from http://docs.openstack.org/security-guide/compute/checklist.html
 
 nova_conf_dir = '/etc/nova'
+
+nova_conf_dir = attribute(
+  'nova_config_dir',
+  default: '/etc/nova',
+  description: 'OpenStack Compute Service config file path'
+)
+
 nova_conf_file = "#{nova_conf_dir}/nova.conf"
 
 control 'check-compute-01' do
