@@ -2,7 +2,7 @@
 # All checks from http://docs.openstack.org/security-guide/compute/checklist.html
 
 nova_conf_dir = attribute(
-  'nova_config_dir',
+  'nova_conf_dir',
   default: '/etc/nova',
   description: 'OpenStack Compute Service config file path'
 )
@@ -29,6 +29,9 @@ control 'check-compute-01' do
     it { should be_owned_by 'root' }
     its('group') { should eq 'nova' }
   end
+  describe directory("#{nova_conf_dir}") do
+    it { should be_owned_by 'root' }
+    its('group') { should eq 'nova' }
 end
 
 control 'check-compute-02' do
