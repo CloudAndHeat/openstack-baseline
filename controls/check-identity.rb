@@ -7,11 +7,9 @@ keystone_conf_dir = attribute(
   description: 'OpenStack Identity Service config file path'
 )
 
-keystone_conf_file = "#{keystone_conf_dir}/keystone.conf"
-
 keystone_conf_file = attribute(
   'keystone_config_file',
-  default: '/etc/keystone/keystone.conf',
+  default: "#{keystone_conf_dir}/keystone.conf",
   description: 'OpenStack Keystone config file'
 )
 
@@ -110,6 +108,7 @@ control 'check-identity-02' do
   describe directory("#{keystone_conf_dir}") do
     its('mode') { should cmp '0750' }
   end
+  
 end
 
 control 'check-identity-03' do
