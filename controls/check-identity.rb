@@ -9,6 +9,12 @@ keystone_conf_dir = attribute(
 
 keystone_conf_file = "#{keystone_conf_dir}/keystone.conf"
 
+keystone_conf_file = attribute(
+  'keystone_config_file',
+  default: '/etc/keystone/keystone.conf',
+  description: 'OpenStack Keystone config file'
+)
+
 control 'check-identity-01' do # rubocop:disable Metrics/BlockLength
   title 'Keystone config files should be owned by keystone user and group.'
   ref 'http://docs.openstack.org/security-guide/identity/checklist.html#check-identity-01-is-user-group-ownership-of-config-files-set-to-keystone'
