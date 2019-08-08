@@ -100,6 +100,10 @@ control 'check-identity-02' do
       its('mode') { should cmp '0640' }
     end
   end
+
+  describe directory("#{keystone_conf_dir}") do
+    its('mode') { should cmp '0750' }
+  end
 end
 
 control 'check-identity-03' do
