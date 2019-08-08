@@ -1,7 +1,12 @@
 # encoding: utf-8
 # All checks from http://docs.openstack.org/security-guide/block-storage/checklist.html
 
-cinder_conf_dir = '/etc/cinder'
+cinder_conf_dir = attribute(
+  'cinder_config_dir',
+  default: '/etc/cinder',
+  description: 'OpenStack Block Storage config file path'
+)
+
 cinder_conf_file = "#{cinder_conf_dir}/cinder.conf"
 
 control 'check-block-01' do
