@@ -108,7 +108,6 @@ control 'check-identity-02' do
   describe directory("#{keystone_conf_dir}") do
     its('mode') { should cmp '0750' }
   end
-  
 end
 
 control 'check-identity-03' do
@@ -159,5 +158,14 @@ control 'check-identity-06' do
     its(['pipeline:public_api', 'pipeline']) { should_not include('admin_token_auth') }
     its(['pipeline:admin_api', 'pipeline']) { should_not include('admin_token_auth') }
     its(['pipeline:api_v3', 'pipeline']) { should_not include('admin_token_auth') }
+  end
+end
+
+control 'check-identity-07' do
+  title 'Insecure Debug should be disabled.'
+  ref 'https://docs.openstack.org//security-guide/identity/checklist.html#check-identity-07-insecure-debug-false-in-etc-keystone-keystone-conf'
+
+  describe ini(keystone_conf_file) do
+    its(['DEFAULT', 'insecure_debug']) { should be_nil.or eq 'False' }
   end
 end
