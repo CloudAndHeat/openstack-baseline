@@ -1,7 +1,12 @@
 # encoding: utf-8
 # All checks from http://docs.openstack.org/security-guide/identity/checklist.html
 
-keystone_conf_dir = '/etc/keystone'
+keystone_conf_dir = attribute(
+  'keystone_conf_dir',
+  default: '/etc/keystone',
+  description: 'OpenStack Identity Service config file path'
+)
+
 keystone_conf_file = "#{keystone_conf_dir}/keystone.conf"
 
 control 'check-identity-01' do # rubocop:disable Metrics/BlockLength

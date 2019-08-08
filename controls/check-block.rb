@@ -2,7 +2,7 @@
 # All checks from http://docs.openstack.org/security-guide/block-storage/checklist.html
 
 cinder_conf_dir = attribute(
-  'cinder_config_dir',
+  'cinder_conf_dir',
   default: '/etc/cinder',
   description: 'OpenStack Block Storage config file path'
 )
