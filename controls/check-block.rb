@@ -25,6 +25,13 @@ control 'check-block-01' do
     it { should be_owned_by 'root' }
     its('group') { should eq 'cinder' }
   end
+  describe file("#{cinder_conf_dir}/rootwrap.conf") do
+    it { should be_owned_by 'root' }
+    its('group') { should eq 'cinder' }
+  describe directory("#{cinder_conf_dir}") do
+    it { should be_owned_by 'root' }
+    its('group') { should eq 'cinder' }
+  end
 end
 
 control 'check-block-02' do
