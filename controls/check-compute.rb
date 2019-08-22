@@ -32,6 +32,7 @@ control 'check-compute-01' do
   describe directory("#{nova_conf_dir}") do
     it { should be_owned_by 'root' }
     its('group') { should eq 'nova' }
+  end
 end
 
 control 'check-compute-02' do
